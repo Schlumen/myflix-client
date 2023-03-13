@@ -2926,22 +2926,14 @@ $parcel$ReactRefreshHelpers$98a3.prelude(module);
 try {
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _client = require("react-dom/client");
+var _mainView = require("./components/main-view/main-view");
 var _indexScss = require("./index.scss"); // To indicate to bundle it
 // Main component
 const MyFlixApplication = ()=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "my-flix",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            children: "Good morning"
-        }, void 0, false, {
-            fileName: "src/index.jsx",
-            lineNumber: 8,
-            columnNumber: 13
-        }, undefined)
-    }, void 0, false, {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainView.MainView), {}, void 0, false, {
         fileName: "src/index.jsx",
         lineNumber: 7,
-        columnNumber: 9
+        columnNumber: 12
     }, undefined);
 };
 _c = MyFlixApplication;
@@ -2951,7 +2943,7 @@ const root = (0, _client.createRoot)(container);
 // Render app in the root DO element
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(MyFlixApplication, {}, void 0, false, {
     fileName: "src/index.jsx",
-    lineNumber: 18,
+    lineNumber: 15,
     columnNumber: 13
 }, undefined));
 var _c;
@@ -2962,7 +2954,7 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fh76i"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/main-view/main-view":"4gflv","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fh76i"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("b51c0990bd1130f8");
 
@@ -27147,7 +27139,271 @@ module.exports = require("d3e859820bcf7cda");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"lJZlQ":[function() {},{}],"fh76i":[function(require,module,exports) {
+},{}],"4gflv":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f7a6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f7a6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MainView", ()=>MainView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _movieView = require("../movie-view/movie-view");
+var _movieCard = require("../movie-card/movie-card");
+var _s = $RefreshSig$();
+const MainView = ()=>{
+    _s();
+    const [movies, setMovies] = (0, _react.useState)([
+        {
+            id: 1,
+            title: "Avatar",
+            description: "Avatar (marketed as James Cameron's Avatar) is a 2009 epic science fiction film directed, written, co-produced, and co-edited by James Cameron and starring Sam Worthington, Zoe Saldana, Stephen Lang, Michelle Rodriguez, and Sigourney Weaver. It is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the valuable mineral unobtanium. The expansion of the mining colony threatens the continued existence of a local tribe of Na'vi, a humanoid species indigenous to Pandora. The title of the film refers to a genetically engineered Na'vi body operated from the brain of a remotely located human that is used to interact with the natives of Pandora.",
+            genre: "Science fiction",
+            director: "James Cameron",
+            image: "https://upload.wikimedia.org/wikipedia/en/d/d6/Avatar_%282009_film%29_poster.jpg"
+        },
+        {
+            id: 2,
+            title: "The Lord of the Rings: The Fellowship of the Ring",
+            description: "Set in Middle-earth, the story tells of the Dark Lord Sauron, who seeks the One Ring, which contains part of his might, to return to power. The Ring has found its way to the young hobbit Frodo Baggins. The fate of Middle-earth hangs in the balance as Frodo and eight companions (who form the Fellowship of the Ring) begin their journey to Mount Doom in the land of Mordor, the only place where the Ring can be destroyed. The Fellowship of the Ring was financed and distributed by American studio New Line Cinema, but filmed and edited entirely in Jackson's native New Zealand, concurrently with the other two parts of the trilogy.",
+            genre: "Fantasy",
+            director: "Peter Jackson",
+            image: "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Lord_of_the_Rings_The_Fellowship_of_the_Ring_%282001%29.jpg"
+        },
+        {
+            id: 3,
+            title: "Shang-Chi and the Legend of the Ten Rings",
+            description: "Shang-Chi and the Legend of the Ten Rings is a 2021 American superhero film based on Marvel Comics featuring the character Shang-Chi. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the 25th film in the Marvel Cinematic Universe (MCU). The film was directed by Destin Daniel Cretton, from a screenplay he wrote with Dave Callaham and Andrew Lanham, and stars Simu Liu as Shang-Chi alongside Awkwafina, Meng'er Zhang, Fala Chen, Florian Munteanu, Benedict Wong, Yuen Wah, Michelle Yeoh, Ben Kingsley, and Tony Leung. In the film, Shang-Chi is forced to confront his past when his father Wenwu (Leung), the leader of the Ten Rings organization, draws Shang-Chi and his sister Xialing (Zhang) into a search for a mythical village.",
+            genre: "Superhero",
+            director: "Destin Daniel Cretton",
+            image: "https://upload.wikimedia.org/wikipedia/en/7/74/Shang-Chi_and_the_Legend_of_the_Ten_Rings_poster.jpeg"
+        }
+    ]);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+        movie: selectedMovie,
+        onBackClick: ()=>setSelectedMovie(null)
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 37,
+        columnNumber: 13
+    }, undefined);
+    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "The list is empty"
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 42,
+        columnNumber: 16
+    }, undefined);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: movies.map((movie)=>{
+            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                movie: movie,
+                onMovieClick: (newSelectedMovie)=>{
+                    setSelectedMovie(newSelectedMovie);
+                }
+            }, movie.id, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 49,
+                columnNumber: 21
+            }, undefined);
+        })
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 46,
+        columnNumber: 9
+    }, undefined);
+};
+_s(MainView, "DMuBeDAPmVh8+TCgGIKUXM+200Q=");
+_c = MainView;
+var _c;
+$RefreshReg$(_c, "MainView");
+
+  $parcel$ReactRefreshHelpers$f7a6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-view/movie-view":"ggaUx","../movie-card/movie-card":"bwuIu","@parcel/transformer-js/src/esmodule-helpers.js":"9kOHh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fh76i"}],"ggaUx":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$e9f6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieView", ()=>MovieView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const MovieView = ({ movie , onBackClick  })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    src: movie.image,
+                    alt: "Movie Cover Image"
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 5,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 4,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Title: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 8,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.title
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 9,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 7,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Description: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 12,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.description
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 13,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 11,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Genre: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 16,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.genre
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 17,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 15,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Director: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 20,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.director
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 21,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 19,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    onClick: onBackClick,
+                    children: "Back"
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 24,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 23,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/movie-view/movie-view.jsx",
+        lineNumber: 3,
+        columnNumber: 9
+    }, undefined);
+};
+_c = MovieView;
+var _c;
+$RefreshReg$(_c, "MovieView");
+
+  $parcel$ReactRefreshHelpers$e9f6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"9kOHh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fh76i"}],"9kOHh":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"fh76i":[function(require,module,exports) {
 "use strict";
 var Refresh = require("89d5d3882d1bf49c");
 function debounce(func, delay) {
@@ -27280,6 +27536,38 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"89d5d3882d1bf49c":"i19Gv"}]},["5vzGg","hST36","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"89d5d3882d1bf49c":"i19Gv"}],"bwuIu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$67b2.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const MovieCard = ({ movie , onMovieClick  })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        onClick: ()=>{
+            onMovieClick(movie);
+        },
+        children: movie.title
+    }, void 0, false, {
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 3,
+        columnNumber: 9
+    }, undefined);
+};
+_c = MovieCard;
+var _c;
+$RefreshReg$(_c, "MovieCard");
+
+  $parcel$ReactRefreshHelpers$67b2.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"9kOHh","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fh76i"}],"lJZlQ":[function() {},{}]},["5vzGg","hST36","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
