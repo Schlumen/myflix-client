@@ -27158,6 +27158,18 @@ const MainView = ()=>{
     _s();
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    function returnMovieCard(movie) {
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+            movie: movie,
+            onMovieClick: (newSelectedMovie)=>{
+                setSelectedMovie(newSelectedMovie);
+            }
+        }, movie.id, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 12,
+            columnNumber: 13
+        }, this);
+    }
     (0, _react.useEffect)(()=>{
         fetch("https://myflixapi-11d1.onrender.com/movies").then((resonse)=>resonse.json()).then((movies)=>{
             const moviesFromAPI = movies.map((movie)=>{
@@ -27173,37 +27185,46 @@ const MainView = ()=>{
             setMovies(moviesFromAPI);
         });
     }, []);
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movie: selectedMovie,
-        onBackClick: ()=>setSelectedMovie(null)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 30,
-        columnNumber: 13
-    }, undefined);
+    if (selectedMovie) {
+        let similarMovies = movies.filter((movie)=>movie.genre === selectedMovie.genre ? true : false);
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+                    movie: selectedMovie,
+                    onBackClick: ()=>setSelectedMovie(null)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 44,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 45,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    children: "Similar movies:"
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 46,
+                    columnNumber: 17
+                }, undefined),
+                similarMovies.map((movie)=>returnMovieCard(movie))
+            ]
+        }, void 0, true);
+    }
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 35,
+        lineNumber: 53,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movie)=>{
-            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                movie: movie,
-                onMovieClick: (newSelectedMovie)=>{
-                    setSelectedMovie(newSelectedMovie);
-                }
-            }, movie.id, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 42,
-                columnNumber: 21
-            }, undefined);
-        })
+        children: movies.map((movie)=>returnMovieCard(movie))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 39,
+        lineNumber: 57,
         columnNumber: 9
     }, undefined);
 };

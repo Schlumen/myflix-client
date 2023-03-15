@@ -7,6 +7,18 @@ export const MainView = () => {
 
     const [selectedMovie, setSelectedMovie] = useState(null);
 
+    function returnMovieCard(movie) {
+        return (
+            <MovieCard
+                key={movie.id}
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                    setSelectedMovie(newSelectedMovie);
+                }}
+            />
+        );
+    }
+
     useEffect(() => {
         fetch("https://myflixapi-11d1.onrender.com/movies")
             .then(resonse => resonse.json())
@@ -26,9 +38,15 @@ export const MainView = () => {
     }, []);
 
     if (selectedMovie) {
+        let similarMovies = movies.filter(movie => movie.genre === selectedMovie.genre ? true : false);
         return (
-            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-        )
+            <>
+                <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+                <br />
+                <h2>Similar movies:</h2>
+                {similarMovies.map((movie) => returnMovieCard(movie))}
+            </>
+        );
     }
 
     if (movies.length === 0) {
@@ -37,17 +55,7 @@ export const MainView = () => {
 
     return (
         <div>
-            {movies.map((movie) => {
-                return (
-                    <MovieCard
-                        key={movie.id}
-                        movie={movie}
-                        onMovieClick={(newSelectedMovie) => {
-                            setSelectedMovie(newSelectedMovie);
-                        }}
-                    />
-                );
-            })}
+            {movies.map((movie) => returnMovieCard(movie))}
         </div>
     );
 };
