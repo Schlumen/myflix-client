@@ -5,10 +5,12 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view"
 
 export const MainView = () => {
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
+    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [token, setToken] = useState(storedToken ? storedToken : null);
 
     function returnMovieCard(movie) {
         return (
@@ -74,7 +76,11 @@ export const MainView = () => {
     return (
         <div>
             {movies.map((movie) => returnMovieCard(movie))}
-            <button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
+            <button onClick={() => {
+                setUser(null);
+                setToken(null);
+                localStorage.clear();
+            }}>Logout</button>
         </div>
     );
 };
