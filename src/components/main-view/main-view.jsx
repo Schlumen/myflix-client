@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { MovieView } from "../movie-view/movie-view";
 import { MovieCard } from "../movie-card/movie-card";
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view"
 
 export const MainView = () => {
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
-
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [token, setToken] = useState(storedToken ? storedToken : null);
 
     function returnMovieCard(movie) {
         return (
@@ -20,22 +25,41 @@ export const MainView = () => {
     }
 
     useEffect(() => {
-        fetch("https://myflixapi-11d1.onrender.com/movies")
-            .then(resonse => resonse.json())
-            .then(movies => {
-                const moviesFromAPI = movies.map(movie => {
-                    return {
-                        id: movie._id,
-                        title: movie.title,
-                        description: movie.description,
-                        genre: movie.genre.name,
-                        director: movie.director.name,
-                        image: movie.imageurl
-                    };
-                });
-                setMovies(moviesFromAPI);
+        if (!token) return;
+
+        fetch("https://myflixapi-11d1.onrender.com/movies", {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(resonse => resonse.json())
+        .then(movies => {
+            const moviesFromAPI = movies.map(movie => {
+                return {
+                    id: movie._id,
+                    title: movie.title,
+                    description: movie.description,
+                    genre: movie.genre.name,
+                    director: movie.director.name,
+                    image: movie.imageurl
+                };
             });
-    }, []);
+            setMovies(moviesFromAPI);
+        });
+    }, [token]);
+
+    if (!user) {
+        return (
+            <>
+                Log in
+                <LoginView
+                    onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                    }} />
+                or sign up
+                <SignupView />
+            </>
+        )
+    }
 
     if (selectedMovie) {
         let similarMovies = movies.filter(movie => movie.genre === selectedMovie.genre ? true : false);
@@ -56,6 +80,11 @@ export const MainView = () => {
     return (
         <div>
             {movies.map((movie) => returnMovieCard(movie))}
+            <button onClick={() => {
+                setUser(null);
+                setToken(null);
+                localStorage.clear();
+            }}>Logout</button>
         </div>
     );
 };
