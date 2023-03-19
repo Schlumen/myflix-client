@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 
 export const MovieCard = ({ movie, onMovieClick }) => {
     return (
-        <Card className="h-100">
+        <Card className="h-100" style={{ border: "none" }}>
             <Card.Img variant="top" src={movie.image} />
             <Card.Body className="h-100 d-flex flex-column">
                 <Card.Title>{movie.title}</Card.Title>
