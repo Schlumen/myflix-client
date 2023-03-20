@@ -1,30 +1,17 @@
 import PropTypes from "prop-types";
+import { Button } from "react-bootstrap";
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
-        <div>
-            <div>
-                <img src={movie.image} alt="Movie Cover Image" />
-            </div>
-            <div>
-                <span>Title: </span>
-                <span>{movie.title}</span>
-            </div>
-            <div>
-                <span>Description: </span>
-                <span>{movie.description}</span>
-            </div>
-            <div>
-                <span>Genre: </span>
-                <span>{movie.genre}</span>
-            </div>
-            <div>
-                <span>Director: </span>
-                <span>{movie.director}</span>
-            </div>
-            <div>
-                <button onClick={onBackClick}>Back</button>
-            </div>
+        <div className="text-light">
+            <img className="float-left mr-3 mb-3" src={movie.image} alt="Movie Cover Image" />
+            <h2>{movie.title}</h2>
+            <p>{movie.description}</p>
+            <h5>Genre: </h5>
+            <p>{movie.genre}</p>
+            <h5>Director: </h5>
+            <p>{movie.director}</p>
+            <Button onClick={onBackClick} variant="primary">Back</Button>
         </div>
     );
 };
