@@ -1,28 +1,46 @@
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
+import { Button, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router"
+import { MovieCard } from "../movie-card/movie-card";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+    const { movieId } = useParams();
+    const movie = movies.find(m => m.id === movieId);
+    const similarMovies = movies.filter(movie => movie.genre === movie.genre ? true : false)
+
     return (
-        <div className="text-light">
-            <img className="float-left mr-3 mb-3" src={movie.image} alt="Movie Cover Image" />
-            <h2>{movie.title}</h2>
-            <p>{movie.description}</p>
-            <h5>Genre: </h5>
-            <p>{movie.genre}</p>
-            <h5>Director: </h5>
-            <p>{movie.director}</p>
-            <Button onClick={onBackClick} variant="primary">Back</Button>
-        </div>
+        <>
+            <Col md={12}>
+                <div className="text-light">
+                    <img className="float-left mr-3 mb-3" src={movie.image} alt="Movie Cover Image" />
+                    <h2>{movie.title}</h2>
+                    <p>{movie.description}</p>
+                    <h5>Genre: </h5>
+                    <p>{movie.genre}</p>
+                    <h5>Director: </h5>
+                    <p>{movie.director}</p>
+                    <Link to={"/"}>
+                        <Button variant="primary">Back</Button>
+                    </Link>
+                    <h3 className="mt-3 mb-3 text-light">Similar movies:</h3>
+                </div>
+            </Col> 
+            {similarMovies.map(movie => (
+                <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
+                    <MovieCard movie={movie} />
+                </Col>
+            ))}
+        </>
     );
 };
 
 MovieView.propTypes = {
-    movie: PropTypes.shape({
+    movies: PropTypes.shape({
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
         director: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired
-    }).isRequired,
-    onBackClick: PropTypes.func.isRequired
+    }).isRequired
 };
