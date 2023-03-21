@@ -13,7 +13,7 @@ export const MovieView = ({ movies }) => {
         <>
             <Col md={12}>
                 <div className="text-light">
-                    <img className="float-left mr-3 mb-3" src={movie.image} alt="Movie Cover Image" />
+                    <img className="float-start me-3 mb-2" src={movie.image} alt="Movie Cover Image" />
                     <h2>{movie.title}</h2>
                     <p>{movie.description}</p>
                     <h5>Genre: </h5>

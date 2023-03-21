@@ -3,8 +3,10 @@ import { MovieView } from "../movie-view/movie-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view"
+import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 
 export const MainView = () => {
     const storedUser = localStorage.getItem("user");
@@ -37,15 +39,18 @@ export const MainView = () => {
 
     return (
         <BrowserRouter>
+            
+            <NavigationBar
+                user={user}
+                onLoggedOut={() => {
+                    setUser(null);
+                    setToken(null);
+                    localStorage.clear();
+                }}
+            />
+         
             <Row className="justify-content-center">
                 <Routes>
-                    {/*<Col md={1}> 
-                        <Button variant="primary" className="m-2" onClick={() => {
-                            setUser(null);
-                            setToken(null);
-                            localStorage.clear();
-                        }}>Logout</Button>
-                    </Col>*/}
                     <Route
                         path="/signup"
                         element={

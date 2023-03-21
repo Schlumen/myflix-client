@@ -33,10 +33,10 @@ export const SignupView = () => {
     };
 
     return (
-        <Card className="mt-2 mb-3" style={{ backgroundColor: "#333", border: "1px solid #AAA" }}>
+        <Card className="mt-2 mb-3">
             <Card.Body>
-                <Card.Title className="text-light">Sign up</Card.Title>
-                <Form onSubmit={handleSubmit} className="text-light">
+                <Card.Title>Sign up</Card.Title>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label>Username:</Form.Label>
                         <Form.Control
@@ -45,7 +45,7 @@ export const SignupView = () => {
                             onChange={e => setUsername(e.target.value)}
                             required
                             minLength="5"
-                            className="text-light"
+                            className="bg-light"
                         />
                     </Form.Group>
                     <Form.Group>
@@ -56,7 +56,7 @@ export const SignupView = () => {
                             onChange={e => setPassword(e.target.value)}
                             required
                             minLength="8"
-                            className="text-light"
+                            className="bg-light"
                         />
                     </Form.Group>
                     <Form.Group>
@@ -66,7 +66,7 @@ export const SignupView = () => {
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                             required
-                            className="text-light"
+                            className="bg-light"
                         />
                     </Form.Group>
                     <Form.Group>
@@ -76,7 +76,7 @@ export const SignupView = () => {
                             value={birthdate}
                             onChange={e => setBirthdate(e.target.value)}
                             required
-                            className="text-light"
+                            className="bg-light"
                         />
                     </Form.Group>
                     <Button className="mt-3" variant="primary" type="submit">Submit</Button>
