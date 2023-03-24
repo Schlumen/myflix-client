@@ -36,11 +36,12 @@ export const MovieView = ({ movies }) => {
 };
 
 MovieView.propTypes = {
-    movies: PropTypes.shape({
+    movies: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
         director: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired
-    }).isRequired
+    }).isRequired)
 };
