@@ -16,6 +16,11 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser ? JSON.parse(storedUser) : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
+    const updateUser = user => {
+        setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
+    } 
+
     useEffect(() => {
         if (!token) return;
 
@@ -89,7 +94,11 @@ export const MainView = () => {
                             !user ? (
                                 <Navigate to="/login" replace />
                             ) : (
-                                <ProfileView user={user} token={token} />
+                                <ProfileView user={user} token={token} movies={movies} onLoggedOut={() => {
+                                    setUser(null);
+                                    setToken(null);
+                                    localStorage.clear();
+                                }} updateUser={updateUser}/>
                             )
                         }
                     />
@@ -102,7 +111,7 @@ export const MainView = () => {
                                 ) : movies.length === 0 ? ( 
                                     <Col>The list is empty</Col>
                                 ) : (
-                                    <MovieView movies={movies} />
+                                    <MovieView movies={movies} user={user} token={token} updateUser={updateUser}/>
                                 )}
                             </>
                         }

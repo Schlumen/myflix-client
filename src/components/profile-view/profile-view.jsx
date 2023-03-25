@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Card, Col, Form, Button } from "react-bootstrap";
+import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token }) => {
+export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthdate, setBirthdate] = useState("");
+
+    let favoriteMovies = movies.filter(movie => user.favoriteMovies.includes(movie.id));
     
     const handleSubmit = event => {
         event.preventDefault();
@@ -37,14 +40,34 @@ export const ProfileView = ({ user, token }) => {
         .then(user => {
             if (user) {
                 alert("Successfully changed userdata");
-                localStorage.setItem("user", JSON.stringify(user));
-                window.location.reload();
+                updateUser(user);
             }
         })
         .catch(e => {
             alert(e);
         });
     }
+
+    const deleteAccount = () => {
+        console.log("doin")
+        fetch(`https://myflixapi-11d1.onrender.com/users/${user.username}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Your account has been deleted. Good Bye!");
+                onLoggedOut();
+            } else {
+                alert("Could not delete account");
+            }
+        })
+        .catch(e => {
+            alert(e);
+        });
+    }
+
+   
 
     return (
         <>
@@ -57,6 +80,11 @@ export const ProfileView = ({ user, token }) => {
                         <p>Birthdate: {user.birthdate.slice(0, 10)}</p>
                     </Card.Body>
                 </Card>
+                <Button variant="danger" onClick={() => {
+                    if (confirm("Are you sure?")) {
+                        deleteAccount();
+                    }
+                }}>Delete user account</Button>
             </Col>
             <Col md={6}>
                 <Card className="mt-2 mb-3">
@@ -110,6 +138,14 @@ export const ProfileView = ({ user, token }) => {
                     </Card.Body>
                 </Card>
             </Col>
+            <Col md={12}>
+                <h3 className="mt-3 mb-3 text-light">Your favorite movies:</h3>
+            </Col>
+            {favoriteMovies.map(movie => (
+                <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
+                    <MovieCard movie={movie} />
+                </Col>
+            ))}
         </>
     );
 }
