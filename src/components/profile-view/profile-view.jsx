@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, Col, Form, Button } from "react-bootstrap";
 
-export const ProfileView = ({ user }) => {
+export const ProfileView = ({ user, token }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -9,7 +9,41 @@ export const ProfileView = ({ user }) => {
     const [birthdate, setBirthdate] = useState("");
     
     const handleSubmit = event => {
-        return;
+        event.preventDefault();
+
+        const data = {
+            username,
+            password,
+            email,
+            birthdate
+        }
+
+        fetch(`https://myflixapi-11d1.onrender.com/users/${user.username}`, {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                alert("Changing userdata failed");
+                return false;
+            }
+        })
+        .then(user => {
+            if (user) {
+                alert("Successfully changed userdata");
+                localStorage.setItem("user", JSON.stringify(user));
+                window.location.reload();
+            }
+        })
+        .catch(e => {
+            alert(e);
+        });
     }
 
     return (
