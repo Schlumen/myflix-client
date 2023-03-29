@@ -15,4 +15,4 @@ You can register an account, login, modify your account details, delete your acc
 
 ## Link to the live version
 
-The online hosted version of this app can be found here: [Will be updated later](https://myflix.haendler.dev)
+The online hosted version of this app can be found here: [MyFlix](https://myflix.haendler.dev)
