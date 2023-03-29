@@ -5,7 +5,7 @@ import { Container } from "react-bootstrap";
 
 // Main component
 const MyFlixApplication = () => {
-    return (<Container><MainView /></Container>);
+    return (<MainView />);
 };
 
 // Find root of app

@@ -5,7 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view"
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -53,91 +53,93 @@ export const MainView = () => {
                     localStorage.clear();
                 }}
             />
-            <Row className="justify-content-center">
-                <Routes>
-                    <Route
-                        path="/signup"
-                        element={
-                            <>
-                                {user ? (
-                                    <Navigate to="/" />
-                                ) : (
-                                    <Col md={6}>
-                                        <SignupView />
-                                    </Col>
-                                )}
-                            </>
-                        }                    
-                    />
-                    <Route
-                        path="/login"
-                        element={
-                            <>
-                                {user ? (
-                                    <Navigate to="/" />
-                                ) : (
-                                    <Col md={6}>
-                                        <LoginView
-                                            onLoggedIn={(user, token) => {
-                                                setUser(user);
-                                                setToken(token);
-                                            }}
-                                        />
-                                    </Col>
-                                )}
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/profile"
-                        element={
-                            !user ? (
-                                <Navigate to="/login" replace />
-                            ) : (
-                                <ProfileView user={user} token={token} movies={movies} onLoggedOut={() => {
-                                    setUser(null);
-                                    setToken(null);
-                                    localStorage.clear();
-                                }} updateUser={updateUser}/>
-                            )
-                        }
-                    />
-                    <Route
-                        path="/movies/:movieId"
-                        element={
-                            <>
-                                {!user ? (
+            <Container>
+                <Row className="justify-content-center">
+                    <Routes>
+                        <Route
+                            path="/signup"
+                            element={
+                                <>
+                                    {user ? (
+                                        <Navigate to="/" />
+                                    ) : (
+                                        <Col md={6}>
+                                            <SignupView />
+                                        </Col>
+                                    )}
+                                </>
+                            }                    
+                        />
+                        <Route
+                            path="/login"
+                            element={
+                                <>
+                                    {user ? (
+                                        <Navigate to="/" />
+                                    ) : (
+                                        <Col md={6}>
+                                            <LoginView
+                                                onLoggedIn={(user, token) => {
+                                                    setUser(user);
+                                                    setToken(token);
+                                                }}
+                                            />
+                                        </Col>
+                                    )}
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                !user ? (
                                     <Navigate to="/login" replace />
-                                ) : movies.length === 0 ? ( 
-                                    <Col>The list is empty</Col>
                                 ) : (
-                                    <MovieView movies={movies} user={user} token={token} updateUser={updateUser}/>
-                                )}
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                {!user ? (
-                                    <Navigate to="/login" replace />
-                                ) : movies.length === 0 ? ( 
-                                    <Col>The list is empty</Col>
-                                ) : (
-                                    <>
-                                        {movies.map(movie => (
-                                            <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
-                                                <MovieCard movie={movie} />
-                                            </Col>
-                                        ))}
-                                    </>
-                                )}
-                            </>
-                        }
-                    />
-                </Routes>
-            </Row>
+                                    <ProfileView user={user} token={token} movies={movies} onLoggedOut={() => {
+                                        setUser(null);
+                                        setToken(null);
+                                        localStorage.clear();
+                                    }} updateUser={updateUser}/>
+                                )
+                            }
+                        />
+                        <Route
+                            path="/movies/:movieId"
+                            element={
+                                <>
+                                    {!user ? (
+                                        <Navigate to="/login" replace />
+                                    ) : movies.length === 0 ? ( 
+                                        <Col>The list is empty</Col>
+                                    ) : (
+                                        <MovieView movies={movies} user={user} token={token} updateUser={updateUser}/>
+                                    )}
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/"
+                            element={
+                                <>
+                                    {!user ? (
+                                        <Navigate to="/login" replace />
+                                    ) : movies.length === 0 ? ( 
+                                        <Col>The list is empty</Col>
+                                    ) : (
+                                        <>
+                                            {movies.map(movie => (
+                                                <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
+                                                    <MovieCard movie={movie} />
+                                                </Col>
+                                            ))}
+                                        </>
+                                    )}
+                                </>
+                            }
+                        />
+                    </Routes>
+                </Row>
+            </Container>
         </BrowserRouter>
     );
 };
