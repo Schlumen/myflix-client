@@ -34,10 +34,10 @@ export const LoginView = ({ onLoggedIn }) => {
     };
 
     return (
-        <Card className="mt-2 mb-3" style={{ backgroundColor: "#333", border: "1px solid #AAA" }}>
+        <Card className="mt-2 mb-3">
             <Card.Body>
-                <Card.Title className="text-light">Log in</Card.Title>
-                <Form onSubmit={handleSubmit} className="text-light">
+                <Card.Title >Log in</Card.Title>
+                <Form onSubmit={handleSubmit} >
                     <Form.Group>
                         <Form.Label>Username:</Form.Label>
                         <Form.Control
@@ -46,7 +46,7 @@ export const LoginView = ({ onLoggedIn }) => {
                             onChange={e => setUsername(e.target.value)}
                             required
                             minLength="5"
-                            className="text-light"
+                            className="bg-light"
                         />
                     </Form.Group>
                     <Form.Group>
@@ -56,7 +56,7 @@ export const LoginView = ({ onLoggedIn }) => {
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             required
-                            className="text-light"
+                            className="bg-light"
                         />
                     </Form.Group>
                     <Button className="mt-3" variant="primary" type="submit">Submit</Button>
