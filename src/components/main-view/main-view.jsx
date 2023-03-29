@@ -35,7 +35,13 @@ export const MainView = () => {
                     title: movie.title,
                     description: movie.description,
                     genre: movie.genre.name,
+                    genredescription: movie.genre.description,
                     director: movie.director.name,
+                    directorbio: movie.director.bio,
+                    directorbirth: movie.director.birthyear,
+                    directordeath: movie.director.deathyear,
+                    actors: movie.actors,
+                    year: movie.year,
                     image: movie.imageurl
                 };
             });
