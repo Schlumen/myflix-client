@@ -47176,7 +47176,10 @@ const NavigationBar = ({ user , onLoggedOut , onSearch  })=>{
                                     to: "/",
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                         variant: "primary",
-                                        onClick: ()=>onSearch(query),
+                                        onClick: ()=>{
+                                            onSearch(query);
+                                            setQuery("");
+                                        },
                                         children: "Search"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",

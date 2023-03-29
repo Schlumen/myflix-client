@@ -37,7 +37,10 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
                                 onChange={e => setQuery(e.target.value)}
                             />
                             <Link to={"/"}>
-                                <Button variant="primary" onClick={() => onSearch(query)}>Search</Button>
+                                <Button variant="primary" onClick={() => {
+                                    onSearch(query);
+                                    setQuery("");
+                                }}>Search</Button>
                             </Link>
                         </Form>
                     )}
