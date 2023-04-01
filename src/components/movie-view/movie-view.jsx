@@ -14,6 +14,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
 
     useEffect(() => {
         setIsFavorite(user.favoriteMovies.includes(movie.id));
+        window.scrollTo(0, 0);
     }, [movieId])
 
     const addFavorite = () => {
