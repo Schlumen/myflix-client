@@ -124,7 +124,7 @@ export const MainView = () => {
                                     {!user ? (
                                         <Navigate to="/login" replace />
                                     ) : movies.length === 0 ? ( 
-                                        <Col>The list is empty</Col>
+                                        <Col style={{color: "white"}}><p>The list is empty. Loading data from api...</p></Col>
                                     ) : (
                                         <MovieView movies={movies} user={user} token={token} updateUser={updateUser}/>
                                     )}
@@ -138,7 +138,7 @@ export const MainView = () => {
                                     {!user ? (
                                         <Navigate to="/login" replace />
                                     ) : movies.length === 0 ? ( 
-                                        <Col>The list is empty</Col>
+                                        <Col style={{color: "white"}}><p>The list is empty. Loading data from api...</p></Col>
                                     ) : (
                                         <>
                                             {viewMovies.map(movie => (

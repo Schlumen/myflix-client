@@ -1,13 +1,18 @@
 import { Navbar, Container, Nav, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
     const [query, setQuery] = useState("");
+
+    useEffect(() => {
+        onSearch(query);
+    }, [query]);
+
     return (
-        <Navbar bg="dark" variant="dark" className="mb-4">
+        <Navbar bg="dark" variant="dark" className="mb-4" sticky="top">
             <Container>
-                <Navbar.Brand as={Link} to="/" onClick={() => onSearch("")}>MyFlix</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/" onClick={() => setQuery("")}>MyFlix</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
@@ -19,7 +24,7 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
                         )}
                         {user && (
                             <>
-                                <Nav.Link as={Link} to="/" onClick={() => onSearch("")}>Home</Nav.Link>
+                                <Nav.Link as={Link} to="/" onClick={() => setQuery("")}>Home</Nav.Link>
                                 <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
                             </>
@@ -34,12 +39,13 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
                                 className="me-2"
                                 aria-label="Search"
                                 value={query}
-                                onChange={e => setQuery(e.target.value)}
+                                onChange={e => {
+                                    setQuery(e.target.value);
+                                }}
                             />
                             <Link to={"/"}>
                                 <Button variant="primary" onClick={() => {
                                     onSearch(query);
-                                    setQuery("");
                                 }}>Search</Button>
                             </Link>
                         </Form>
